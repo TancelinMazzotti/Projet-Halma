@@ -26,9 +26,9 @@ void vider_buffer()
 
 void clear_console()
 {
-    #ifdef linux
+    #ifdef linux    // Si on est sur linux
         system("clear");
-    #elif _WIN32
+    #elif _WIN32    // Sinon si on est sur windows
         system("cls");
     #endif
 }
@@ -41,24 +41,24 @@ void afficher_plateau(const int plateau[][TAILLE_PLATEAU])
     printf("  ");
     for (i = 0 ; i < TAILLE_PLATEAU ; i++)
     {
-        printf(" %d",i);
+        printf(" %d",i);  // affichage coordonnee en abscisse
     }
 
     printf("\n  ");
 
     for (i = 0 ; i < TAILLE_PLATEAU ; i++)
     {
-        printf(" -");
+        printf(" -");  // decoration
     }
 
     printf("\n");
 
     for(y = 0; y < TAILLE_PLATEAU ; y++)
     {
-        printf("%d| ",y);
+        printf("%d| ",y); // affichage coordonnee en ordonnee
         for(x = 0; x < TAILLE_PLATEAU ; x++)
         {
-            printf("%d ",plateau[x][y]);
+            printf("%d ",plateau[x][y]); // affichage valeur du tableau
         }
         printf("\n");
     }
