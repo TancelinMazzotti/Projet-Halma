@@ -24,6 +24,15 @@ void vider_buffer()
     }
 }
 
+void clear_console()
+{
+    #ifdef linux
+        system("clear");
+    #elif _WIN32
+        system("cls");
+    #endif
+}
+
 void afficher_plateau(const int plateau[][TAILLE_PLATEAU])
 {
     int x,y,i;

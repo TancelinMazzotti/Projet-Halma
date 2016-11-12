@@ -6,6 +6,7 @@
 
 int choix_nombre_joueur();   // Demande le nombre de joueur
 void vider_buffer();         // Vide le buffer pour le scanf
+void clear_console();
 void afficher_plateau(const int plateau[][TAILLE_PLATEAU]);     // Affiche tout le plateau de jeu
 void afficher_classement(const int classement[4], int nombre_joueur);
 

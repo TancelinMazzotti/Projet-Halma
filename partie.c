@@ -4,7 +4,7 @@ int deroulement_tour(struct Partie * variable_partie)
 {
     do
     {
-        system("clear");
+        clear_console();
         afficher_plateau(variable_partie->plateau);
         printf("JOUEUR %d a vous de jouer ! \n\n",variable_partie->num_joueur);
 
@@ -24,7 +24,7 @@ int deroulement_tour(struct Partie * variable_partie)
                                              variable_partie->plateau,
                                              &variable_partie->pion_sauter);
 
-        system("clear");
+        clear_console();
         afficher_plateau(variable_partie->plateau);
 
         // Affichage information sur le deplacemnt effectue (faire une fonction affichage)

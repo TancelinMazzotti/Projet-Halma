@@ -7,7 +7,7 @@ int main()
 
     do
     {
-        system("clear");
+        clear_console();
         printf("\n ***** HALMA GAME ***** by Tancelin MAZZOTTI & Camille LANGE\n\n");
         lancement_partie();
         do
