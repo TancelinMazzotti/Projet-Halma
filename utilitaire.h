@@ -2,6 +2,7 @@
 #define UTILITAIRE_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #define TAILLE_PLATEAU 10
 
 int choix_nombre_joueur();   // Demande le nombre de joueur
