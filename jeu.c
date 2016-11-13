@@ -43,7 +43,7 @@ int deplacer_pion(int num_joueur,int coord_pion[], int coord_destination[], int 
             {
                 plateau[coord_destination[0]][coord_destination[1]] = num_joueur;
                 plateau[coord_pion[0]][coord_pion[1]] = 0;
-                return 1;
+                return 1; // Deplacement d'une case
             }
         }
     }
@@ -67,11 +67,11 @@ int deplacer_pion(int num_joueur,int coord_pion[], int coord_destination[], int 
             plateau[coord_destination[0]][coord_destination[1]] = num_joueur;
             plateau[coord_pion[0]][coord_pion[1]] = 0;
             *pion_sauter = 1;
-            return 2;
+            return 2; // Deplacement de 2 case en sautant un pion
         }
 
     }
-    return 0;
+    return 0; // Deplacement impossible
 }
 
 int joueur_suivant(const int nombre_joueur, int numero_joueur, const int classement[])
