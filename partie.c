@@ -18,11 +18,7 @@ int deroulement_tour(struct Partie * variable_partie)
         selection_coordonne(variable_partie->coord_destination_pion); // Selection destinantion du pion
 
         // deplacer_pion sera un peu modifier par la suite
-        variable_partie->resultat_deplacement = deplacer_pion(variable_partie->num_joueur,
-                                             variable_partie->coord_pion_selectionner,
-                                             variable_partie->coord_destination_pion,
-                                             variable_partie->plateau,
-                                             &variable_partie->pion_sauter);
+        variable_partie->resultat_deplacement = deplacer_pion(variable_partie);
 
         clear_console();
         afficher_plateau(variable_partie->plateau);
@@ -50,7 +46,6 @@ int deroulement_tour(struct Partie * variable_partie)
 int lancement_partie()
 {
     // Initialisation de la structure
-
     struct Partie variable_partie = {0,0,{0},{0},{0},{0},0,0};
 
     variable_partie.nombre_joueur = choix_nombre_joueur();

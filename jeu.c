@@ -24,27 +24,33 @@ void selection_coordonne(int tableau_coord[2])
     } while (tableau_coord[1] < 0 || tableau_coord[1] >= TAILLE_PLATEAU);
 }
 
-int deplacer_pion(int num_joueur,int coord_pion[], int coord_destination[], int plateau[][TAILLE_PLATEAU],int *pion_sauter)
+int deplacer_pion(struct Partie *variable_partie)
 {
-    int ecart_x = coord_destination[0] - coord_pion[0];
-    int ecart_y = coord_destination[1] - coord_pion[1];
+    int ecart_x = variable_partie->coord_destination_pion[0] - variable_partie->coord_pion_selectionner[0];
+    int ecart_y = variable_partie->coord_destination_pion[1] - variable_partie->coord_pion_selectionner[1];
 
     if (ecart_x == 0 && ecart_y == 0)
         return 0;
 
-    if (test_emplacement(num_joueur,coord_pion[0],coord_pion[1],plateau) == 0)
+    if (test_emplacement(variable_partie->num_joueur,
+                         variable_partie->coord_pion_selectionner[0],
+                         variable_partie->coord_pion_selectionner[1],
+                         variable_partie->plateau) == 0)
         return 0;
 
-    // Deplacement sans sauter de pion
     if ( (ecart_x < 2 && ecart_y < 2) && (ecart_x > -2 && ecart_y > -2))
     {
-        if (*pion_sauter == 0)
+        if (variable_partie->pion_sauter == 0)
         {
             printf("Deplacer sans sauter de pion\n");
-            if(test_emplacement(0, coord_destination[0],coord_destination[1], plateau) == 1)
+
+            if(test_emplacement(0,
+                                variable_partie->coord_destination_pion[0],
+                                variable_partie->coord_destination_pion[1],
+                                variable_partie->plateau) == 1)
             {
-                plateau[coord_destination[0]][coord_destination[1]] = num_joueur;
-                plateau[coord_pion[0]][coord_pion[1]] = 0;
+                variable_partie->plateau[variable_partie->coord_destination_pion[0]][variable_partie->coord_destination_pion[1]] = variable_partie->num_joueur;
+                variable_partie->plateau[variable_partie->coord_pion_selectionner[0]][variable_partie->coord_pion_selectionner[1]] = 0;
                 return 1; // Deplacement d'une case
             }
         }
@@ -64,11 +70,16 @@ int deplacer_pion(int num_joueur,int coord_pion[], int coord_destination[], int 
         else if (ecart_y < 0)
             ecart_y = ecart_y + 1;
 
-        if (test_emplacement(0, coord_pion[0] + (ecart_x),coord_pion[1] + (ecart_y), plateau) == 0)
+        if (test_emplacement(0,
+                             variable_partie->coord_pion_selectionner[0] + ecart_x,
+                             variable_partie->coord_pion_selectionner[1] + ecart_y,
+                             variable_partie->plateau) == 0)
         {
-            plateau[coord_destination[0]][coord_destination[1]] = num_joueur;
-            plateau[coord_pion[0]][coord_pion[1]] = 0;
-            *pion_sauter = 1;
+            variable_partie->plateau[variable_partie->coord_destination_pion[0]][variable_partie->coord_destination_pion[1]] = variable_partie->num_joueur;
+            variable_partie->plateau[variable_partie->coord_pion_selectionner[0]][variable_partie->coord_pion_selectionner[1]] = 0;
+            variable_partie->coord_pion_selectionner[0] = variable_partie->coord_destination_pion[0];
+            variable_partie->coord_pion_selectionner[1] = variable_partie->coord_destination_pion[1];
+            variable_partie->pion_sauter = 1;
             return 2; // Deplacement de 2 case en sautant un pion
         }
 
