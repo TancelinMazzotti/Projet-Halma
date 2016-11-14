@@ -32,6 +32,8 @@ int deplacer_pion(int num_joueur,int coord_pion[], int coord_destination[], int 
     if (ecart_x == 0 && ecart_y == 0)
         return 0;
 
+    if (test_emplacement(num_joueur,coord_pion[0],coord_pion[1],plateau) == 0)
+        return 0;
 
     // Deplacement sans sauter de pion
     if ( (ecart_x < 2 && ecart_y < 2) && (ecart_x > -2 && ecart_y > -2))
